@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RK1</string>
+
+    <string name="pref_name1">USD</string>
+    <string name="pref_name2">RUB</string>
+
+    <string name="pref_value1">usd</string>
+    <string name="pref_value2">rub</string>
+
+    <string name="pref_key">currency</string>
+    <string name="pref_title">Currency</string>
+
+    <string name="menu_settings">Settings</string>
+</resources>
