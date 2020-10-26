@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="currencies_names">
+        <item>@string/pref_name1</item>
+        <item>@string/pref_name2</item>
+    </array>
+
+    <array name="currencies_values">
+        <item>@string/pref_value1</item>
+        <item>@string/pref_value2</item>
+    </array>
+</resources>
