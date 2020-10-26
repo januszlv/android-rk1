@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/currency_header">
+
     <ListPreference
         android:defaultValue="@string/pref_value1"
         android:entries="@array/currencies_names"
         android:entryValues="@array/currencies_values"
         android:key="@string/pref_key"
-        android:title="@string/pref_title"/>
+        android:title="@string/pref_title"
+        android:summary="%s"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/days_header">
+
+    <EditTextPreference
+        android:defaultValue="7"
+        android:key="@string/num_key"
+        android:title="@string/num_title" />
+
+    </PreferenceCategory>
 </PreferenceScreen>
