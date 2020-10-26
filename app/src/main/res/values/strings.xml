@@ -10,5 +10,8 @@
     <string name="pref_key">currency</string>
     <string name="pref_title">Currency</string>
 
+    <string name="num_key">num_days</string>
+    <string name="num_title">Change number of days</string>
+
     <string name="menu_settings">Settings</string>
 </resources>

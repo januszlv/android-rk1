@@ -8,5 +8,19 @@
         android:orientation="vertical"
         tools:context=".HostFragment">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/day_price_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="9"
+            tools:listitem="@layout/day_price_item" />
     </LinearLayout>
 </layout>
