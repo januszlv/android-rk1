@@ -8,13 +8,15 @@
         android:orientation="vertical"
         tools:context=".HostFragment">
 
-        <TextView
-            android:id="@+id/textView"
+        <EditText
+            android:id="@+id/input_currency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/btc_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:ems="10"
+            android:hint="@string/btc_title"
+            android:autofillHints="@string/btc_title"
+            android:inputType="textCapCharacters"
+            android:imeOptions="actionDone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/day_price_item_list"

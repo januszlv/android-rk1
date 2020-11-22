@@ -1,9 +1,11 @@
 package com.example.rk1
 
+import android.content.ContentValues.TAG
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rk1.databinding.FragmentHostBinding
+import android.widget.Toast
 
 class HostFragment : Fragment() {
     private lateinit var binding: FragmentHostBinding
@@ -59,9 +62,37 @@ class HostFragment : Fragment() {
             "7"
         )!!.toInt()
 
-        val fsym = "BTC"
+        var fsym = "BTC"
+        var ok = false
 
-        model.refresh(fsym, tsym, limit)
+        binding.inputCurrency?.setOnKeyListener(
+            View.OnKeyListener { v, keyCode, event ->
+//                Log.i(TAG, keyCode.toString()+" PRESSED" + (keyCode == KeyEvent.KEYCODE_ENTER).toString() + (event.action == KeyEvent.ACTION_UP).toString())
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+//                    Toast.makeText(context, "suppa", Toast.LENGTH_SHORT).show()
+//                    Log.i(TAG, "PRESSED TRUE")
+                    fsym = binding.inputCurrency.text.toString()
+                    Log.i(TAG, "!!!!!fsym: " + fsym)
+                    for (v in resources.getStringArray(R.array.from_units_array_values)) {
+                        if (v == fsym) {
+                            ok = true
+                            break
+                        }
+                    }
+
+                    if (ok) {
+                        model.refresh(fsym, tsym, limit)
+                    } else {
+//                            fsym = "BTC"
+                        Toast.makeText(context, getString(R.string.error_currency), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                Log.i(TAG, "PRESSED FALSE")
+                false
+            }
+        )
+
+//        model.refresh(fsym, tsym, limit)
         return view
     }
 }
