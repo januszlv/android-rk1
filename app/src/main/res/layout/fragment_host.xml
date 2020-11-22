@@ -4,21 +4,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".HostFragment">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/input_currency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/btc_title"
+            android:autofillHints="@string/btc_title"
+            android:inputType="textCapCharacters"
+            android:imeOptions="actionDone"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/api_button"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="16dp"/>
-        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/day_price_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="9"
+            tools:listitem="@layout/day_price_item" />
     </LinearLayout>
 </layout>
