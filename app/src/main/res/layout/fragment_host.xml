@@ -4,7 +4,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".HostFragment">
 
@@ -13,18 +13,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textSize="20sp"
+            android:gravity="center"
             android:hint="@string/btc_title"
             android:autofillHints="@string/btc_title"
             android:inputType="textCapCharacters"
-            android:imeOptions="actionDone"/>
+            android:imeOptions="actionDone"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/day_price_item_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="9"
             tools:listitem="@layout/day_price_item" />
+
+        <Button
+            android:id="@+id/button_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/api_button" />
     </LinearLayout>
 </layout>

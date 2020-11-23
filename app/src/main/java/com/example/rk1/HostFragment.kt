@@ -1,7 +1,8 @@
 package com.example.rk1
 
-import android.content.ContentValues.TAG
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -17,10 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rk1.databinding.FragmentHostBinding
 import android.widget.Toast
 
-class HostFragment : Fragment() {
+class HostFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
     private lateinit var binding: FragmentHostBinding
     private val model: DayPriceViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferences
+
+    private lateinit var tsym: String
+    private var limit: Int = 7
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,12 @@ class HostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_host, container, false)
+
+        binding.buttonWeb.setOnClickListener{
+            val parsedUri: Uri = Uri.parse("https://min-api.cryptocompare.com")
+            val intent = Intent(Intent.ACTION_VIEW, parsedUri)
+            requireActivity().startActivity(intent)
+        }
 
         val dayListAdapter = DayPriceAdapter(requireContext(), dayItems)
         val dayListManager = LinearLayoutManager(requireContext())
@@ -53,46 +63,58 @@ class HostFragment : Fragment() {
 
         val view = binding.root
 
-        val tsym = sharedPreferences.getString(
+        tsym = sharedPreferences.getString(
             getString(R.string.pref_key),
             getString(R.string.pref_value1)
         )!!
-        val limit = sharedPreferences.getString(
+        limit = sharedPreferences.getString(
             getString(R.string.num_key),
             "7"
         )!!.toInt()
 
-        var fsym = "BTC"
+        var fsym = if (binding.inputCurrency.text.toString().isEmpty()) getString(R.string.btc_title) else binding.inputCurrency.text.toString()
         var ok = false
 
-        binding.inputCurrency?.setOnKeyListener(
-            View.OnKeyListener { v, keyCode, event ->
-//                Log.i(TAG, keyCode.toString()+" PRESSED" + (keyCode == KeyEvent.KEYCODE_ENTER).toString() + (event.action == KeyEvent.ACTION_UP).toString())
-                if (keyCode == KeyEvent.KEYCODE_ENTER) {
-//                    Toast.makeText(context, "suppa", Toast.LENGTH_SHORT).show()
-//                    Log.i(TAG, "PRESSED TRUE")
-                    fsym = binding.inputCurrency.text.toString()
-                    Log.i(TAG, "!!!!!fsym: " + fsym)
-                    for (v in resources.getStringArray(R.array.from_units_array_values)) {
-                        if (v == fsym) {
-                            ok = true
-                            break
-                        }
-                    }
-
-                    if (ok) {
-                        model.refresh(fsym, tsym, limit)
-                    } else {
-//                            fsym = "BTC"
-                        Toast.makeText(context, getString(R.string.error_currency), Toast.LENGTH_SHORT).show()
+        binding.inputCurrency?.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                fsym = binding.inputCurrency.text.toString()
+                for (v in resources.getStringArray(R.array.from_units_array_values)) {
+                    if (v == fsym) {
+                        ok = true
+                        break
                     }
                 }
-                Log.i(TAG, "PRESSED FALSE")
-                false
-            }
-        )
 
-//        model.refresh(fsym, tsym, limit)
+                if (ok) {
+                    model.refresh(fsym, tsym, limit)
+                } else {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.error_currency),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            false
+        }
+
+        model.refresh(fsym, tsym, limit)
         return view
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        when (key) {
+            getString(R.string.num_key) -> {
+                limit = sharedPreferences?.getString(key, "7")!!.toInt()
+            }
+            getString(R.string.pref_key) -> {
+                tsym = sharedPreferences?.getString(key, "usd")!!
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+        super.onDestroy()
     }
 }

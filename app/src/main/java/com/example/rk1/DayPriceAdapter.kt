@@ -1,9 +1,13 @@
 package com.example.rk1
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rk1.databinding.DayPriceItemBinding
 import java.text.SimpleDateFormat
@@ -20,6 +24,14 @@ class DayPriceAdapter(
             binding.date = Date(item.ts * 1000).toString("dd MMM yyyy")
             binding.sym = item.sym
             binding.value = item.value.toString()
+            binding.root.setOnClickListener{ v ->
+//                val p = 1/0
+                Log.i(TAG, "PEREHOD")
+                val bundle = bundleOf(InfoFragment.ARG_DATE to binding.date,
+                    InfoFragment.ARG_MIN to item.min,
+                    InfoFragment.ARG_MAX to item.max)
+                v.findNavController().navigate(R.id.action_host_fragment_to_infoFragment, bundle)
+            }
         }
     }
 

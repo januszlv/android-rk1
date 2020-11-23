@@ -16,4 +16,10 @@
     <string name="menu_settings">Settings</string>
     <string name="btc_title">BTC</string>
     <string name="error_currency">Incorrect currency value</string>
+
+    <string name="api_button">Visit API website</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="days_header">Period</string>
+    <string name="currency_header">Currency</string>
 </resources>

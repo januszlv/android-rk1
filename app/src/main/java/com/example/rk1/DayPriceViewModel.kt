@@ -13,6 +13,8 @@ class DayPriceViewModel : ViewModel() {
         val sym: String,
         val ts: Long,
         val value: Float,
+        val min: Float,
+        val max: Float,
     )
 
     private val dayPrice: MutableLiveData<MutableList<DayPriceItemModel>> = MutableLiveData()
@@ -48,7 +50,9 @@ class DayPriceViewModel : ViewModel() {
                 DayPriceItemModel(
                     tsym,
                     it.time,
-                    it.close
+                    it.close,
+                    it.low,
+                    it.high
                 )
             )
         }
