@@ -17,6 +17,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rk1.databinding.FragmentHostBinding
 import android.widget.Toast
+import androidx.preference.Preference
 
 class HostFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
     private lateinit var binding: FragmentHostBinding
@@ -71,6 +72,7 @@ class HostFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
             getString(R.string.num_key),
             "7"
         )!!.toInt()
+        limit--
 
         var fsym = if (binding.inputCurrency.text.toString().isEmpty()) getString(R.string.btc_title) else binding.inputCurrency.text.toString()
         var ok = false

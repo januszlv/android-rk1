@@ -8,24 +8,20 @@
     <fragment
         android:id="@+id/host_fragment"
         android:name="com.example.rk1.HostFragment"
-        android:label="fragment_host"
+        android:label="Cryptocurrency"
         tools:layout="@layout/fragment_host">
         <action
-            android:id="@+id/action_host_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
-        <action
             android:id="@+id/action_host_fragment_to_infoFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:destination="@id/infoFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/settings_fragment"
-        android:name="com.example.rk1.SettingsFragment"
-        android:label="fragment_settings">
-    </fragment>
-    <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.rk1.InfoFragment"
-        android:label="InfoFragment" />
+        android:label="Information" />
 
 </navigation>

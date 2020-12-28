@@ -49,8 +49,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center|center_horizontal|center_vertical"
-                android:text='@{sym, default="USD"}'
-                android:textSize="20sp" />
+                android:text='@{sym, default="USD"}' />
 
             <TextView
                 android:id="@+id/day_price_item_date"
@@ -58,8 +57,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center|center_horizontal|center_vertical"
-                android:text='@{date, default="21.10"}'
-                android:textSize="20sp" />
+                android:text='@{date, default="21.10"}' />
 
             <TextView
                 android:id="@+id/day_price_item_value"
@@ -69,8 +67,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center|center_horizontal|center_vertical"
-                android:text='@{value, default="12321"}'
-                android:textSize="20sp" />
+                android:text='@{value, default="12321"}' />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
