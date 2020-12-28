@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/host_fragment">
+
+    <fragment
+        android:id="@+id/host_fragment"
+        android:name="com.example.rk1.HostFragment"
+        android:label="Cryptocurrency"
+        tools:layout="@layout/fragment_host">
+        <action
+            android:id="@+id/action_host_fragment_to_infoFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:destination="@id/infoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.rk1.InfoFragment"
+        android:label="Information" />
+
+</navigation>

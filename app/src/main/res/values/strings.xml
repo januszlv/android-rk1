@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">RK1</string>
+
+    <string name="pref_name1">USD</string>
+    <string name="pref_name2">RUB</string>
+
+    <string name="pref_value1">usd</string>
+    <string name="pref_value2">rub</string>
+
+    <string name="pref_key">currency</string>
+    <string name="pref_title">Currency</string>
+
+    <string name="num_key">num_days</string>
+    <string name="num_title">Number of days</string>
+
+    <string name="menu_settings">Settings</string>
+    <string name="btc_title">BTC</string>
+    <string name="error_currency">Incorrect currency value</string>
+
+    <string name="api_button">Visit API website</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="days_header">Period</string>
+    <string name="currency_header">Currency</string>
+</resources>
